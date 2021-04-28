@@ -15,5 +15,32 @@ namespace ComercialSis.Classes
         public double Desconto { get; set; }
         public string Situacao { get; set; }
         public List<Item> Items { get; set; }
+        public Pedido() { }
+
+        public Pedido(int id, DateTime data, Cliente cliente, Usuario usuario, double desconto, string situacao, List<Item> items)
+        {
+            Id = id;
+            Data = data;
+            Cliente = cliente;
+            Usuario = usuario;
+            Desconto = desconto;
+            Situacao = situacao;
+            Items = items;
+        }
+        public Pedido(DateTime data, Cliente cliente, Usuario usuario, double desconto, string situacao, List<Item> items)
+        {
+            Data = data;
+            Cliente = cliente;
+            Usuario = usuario;
+            Desconto = desconto;
+            Situacao = situacao;
+            Items = items;
+        }
+        public Pedido(Cliente cliente, Usuario usuario, double desconto)
+        {
+            Cliente = cliente;
+            Usuario = usuario;
+            Desconto = 0,0;
+        }
     }
 }
