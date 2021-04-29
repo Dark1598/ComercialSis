@@ -62,9 +62,14 @@ namespace ComercialSis.Classes
             // fecha a conexao
             return alterado;
         }
-        public double ObterValor(Pedidos pedido)
+        public double ObterValor(int pedido)
         {
             double valor = 0.00;
+            // conectar ao banco
+            // buscar o registro na tabela  a ser calculado 
+            // atribuir o valor à variável
+            // fecha a concexao
+            return valor;
         }
     }
 }

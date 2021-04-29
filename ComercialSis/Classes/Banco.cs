@@ -12,7 +12,7 @@ namespace ComercialSis.Classes
         public static MySqlCommand Abrir()
         {
             MySqlCommand cmd = new MySqlCommand();
-            string strconn = @"server=127.0.0.1;datatabase=comercialdb;user id=root; password=";
+            string strconn = @"server=127.0.0.1; database = comercialdb; port = 3307; user id=root; password=";
             MySqlConnection cn = new MySqlConnection(strconn);
             try
             {
