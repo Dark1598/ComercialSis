@@ -42,8 +42,8 @@ namespace ComercialSis
             produto.BuscarPorId(int.Parse(txtId.Text));
             txtDescricao.Text = produto.Descricao;
             txtCodBar.Text = produto.CodBar;
-            txtValor.Text = produto.Valor.ToString();
-            txtDesconto.Text = produto.Desconto.ToString();
+            txtValor.Text = produto.Valor.ToString("C");
+            txtDesconto.Text = produto.Desconto.ToString("##.##%");
         }
 
         private void button2_Click(object sender, EventArgs e)
