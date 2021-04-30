@@ -38,7 +38,14 @@ namespace ComercialSis.Classes
         public void Inserir() 
         {
             // conectar ao banco
+            var cmd = Banco.Abrir();
             // inserir valores tabela
+            cmd.CommandText = "insert produtos values " +
+                "(0, '" + Descricao + "' ," +
+                " '" + CodBar + "'," +
+                " '" + Valor + "' ," +
+                " '" + Desconto + "');";
+            cmd.ExecuteNonQuery();
             // atribuir id a propriedade id
             // fecha a conexao
         }
@@ -47,7 +54,20 @@ namespace ComercialSis.Classes
         {
             List<Produto> Lista = new List<Produto>();
             // conectar ao banco
+            var cmd = Banco.Abrir();
             // buscar registros na tabela
+            cmd.CommandText = "select * from produtos";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Lista.Add(new Produto(
+                dr.GetInt32(0),
+                dr.GetString(1),
+                dr.GetString(2),
+                dr.GetDouble(3),
+                dr.GetDouble(4)
+                ));
+            }
             // atribuir registros a lista
             // fecha a conexao
             // entregar lista pra quem solicitou
@@ -57,17 +77,43 @@ namespace ComercialSis.Classes
         {
             List<Produto> Lista = new List<Produto>();
             // conectar ao banco
+            var cmd = Banco.Abrir();
             // buscar registros na tabela
-            // atribuir os valores a propriedades
-            // fecha a conexao
+            cmd.CommandText = "select * from produtos where id = " + id;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                Descricao = dr.GetString(1);
+                CodBar = dr.GetString(2);
+                Valor = dr.GetDouble(3);
+                Desconto = dr.GetDouble(4);
+            }
         }
         public bool Alterar(int id)
         {
             bool alterado = false;
             // conectar ao banco
+            var cmd = Banco.Abrir();
             // buscar registros na tabela a ser alterado
+
             // atribuir os valores a propriedades
+            cmd.CommandText = "update produtos " +
+            "set descricao = '" + Descricao + "', " +
+            "cod_bar = '" + CodBar + "', " +
+            "valor = '" + Valor + "', " +
+            "desconto = '" + Desconto + "' " +
+            "where id = " + id;
+
             // registra a alteracao
+            try
+            {
+                cmd.ExecuteNonQuery();
+                alterado = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             // indica a validacao (alterado com sussesso)
             // fecha a conexao
             return alterado;

@@ -53,7 +53,13 @@ namespace ComercialSis.Classes
             // conectar ao banco
             var cmd = Banco.Abrir();
             // inserir valores tabela
-            cmd.CommandText = "insert clientes values (0, '"+Nome+"' , '"+Cpf+"', '"+Email+"' , '"+Telefone+"' , default, md5('123456'));";
+            cmd.CommandText = "insert clientes values " +
+                "(0, '"+Nome+"' ," +
+                " '"+Cpf+"'," +
+                " '"+Email+"' ," +
+                " '"+Telefone+"' ," +
+                " default," +
+                " md5('123456'));";
             cmd.ExecuteNonQuery();
             // atribuir id a propriedade id
             cmd.CommandText = "select @@identity";

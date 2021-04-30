@@ -61,7 +61,7 @@ namespace ComercialSis
             cliente.Senha = txtSenha.Text;
             cliente.Inserir();
             txtId.Text = cliente.Id.ToString();
-            MessageBox.Show("Cliente iserido com Sucesso!!!");
+            MessageBox.Show("Cliente inserido com Sucesso!!!");
 
         }
 
